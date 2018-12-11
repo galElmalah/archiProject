@@ -4,7 +4,11 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => res.send("yeah"));
+app.post("/", (req, res) => {
+  const sub = req.body.subString;
+  const regEx = new RegExp(sub, "g");
+  res.send(req.body.text.replace(regEx, ""));
+});
 
 module.exports = port =>
   app.listen(port, () =>
