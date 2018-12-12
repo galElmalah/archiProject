@@ -1,17 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require('cors')
-
+const cors = require("cors");
+const capitalize = require("./utils");
 const app = express();
-app.use(cors())
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post("/", ({ body: { text } }, res) =>
-  res.send(
-    text[text.trim().length - 1] === "." ? text.trim() : text.trim().concat(".")
-  )
-);
+// capitalize every word
+app.post("/", (req, res) => res.send(capitalize(req.body.text)));
 
 module.exports = port =>
   app.listen(port, () =>
