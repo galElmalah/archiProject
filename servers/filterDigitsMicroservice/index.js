@@ -1,16 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require('cors')
-
+const filterDigits = require("./utils");
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// filter digits
 app.post("/", (req, res) => {
-  const sub = req.body.subString;
-  const regEx = new RegExp(sub, "g");
-  res.send(req.body.text.replace(regEx, ""));
+  res.send(filterDigits(req.body.text));
 });
 
 module.exports = port =>
