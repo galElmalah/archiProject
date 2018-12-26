@@ -12,8 +12,8 @@ def hello_world():
     if request.method == 'POST':
         data = json.loads(request.data.decode('utf-8'))
         print(data, file=sys.stderr)
-        cleanString = re.sub('\W+','', data['text'] )
-        print(cleanString, file=sys.stderr)
-        return cleanString
+        stringWithDot = data['text'] + '.'
+        print(stringWithDot, file=sys.stderr)
+        return stringWithDot
 
-app.run(host='localhost', port=3007)
+app.run(host='localhost', port=3006)

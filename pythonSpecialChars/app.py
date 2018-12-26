@@ -16,4 +16,4 @@ def hello_world():
         print(cleanString, file=sys.stderr)
         return cleanString
 
-app.run(host='localhost', port=3004)
+app.run(host='localhost', port=3007)
